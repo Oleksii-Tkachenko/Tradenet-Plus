@@ -1,0 +1,478 @@
+@import "fonts"
+*
+    margin: 0 imortant
+    padding: 0 imortant
+    box-sizing: border-box
+.row, [class*="col-"]
+    padding: 0
+    margin: 0
+.container
+    max-width: 1110px
+    padding: 0
+.header
+    height: 640px
+    font-family: Rubik
+    color: #fff
+    &__wrapper
+        margin: 0
+    &__left, &__right
+        position: relative
+    &::before
+        content: ""
+        position: absolute
+        background: url(../img/header_bg.png) center center / cover no-repeat
+        width: 100%
+        height: 640px
+        top: 0
+        left: 0
+        opacity: 0.7
+        z-index: -1
+        mix-blend-mode: darken
+    &::after
+        content: ""
+        position: absolute
+        background: linear-gradient(180deg, #5E19CE 0%, #4021D6 100%)
+        width: 100%
+        height: 640px
+        top: 0
+        left: 0
+        z-index: -2
+    &__title
+        font-weight: 500
+        font-size: 64px
+        line-height: 76px
+        margin: 129px 0 0 0
+    &__text
+        font-weight: 400
+        font-size: 24px
+        line-height: 28px
+        margin: 20px 0 47px 0
+        padding-right: 50px
+    &__button
+        margin-top: 47px
+        background: #E96B2C
+        border-radius: 5px
+        text-decoration: none
+        text-transform: uppercase
+        color: #fff
+        display: flex
+        width: 184px
+        height: 56px
+        justify-content: center
+        align-items: center
+        font-weight: 700
+        font-size: 20px
+        &:hover
+            text-decoration: none
+            color: #fff
+    &__laptop
+        position: relative
+        width: 667px
+        height: 539px
+        top: 80px
+        right: 42px
+.free
+    &__main
+        font-size: 24px
+        line-height: 28px
+        font-weight: 700
+        color: #1BD895
+    &__sub
+        margin: 6px 0 0 0 
+        font-weight: 400
+        font-size: 14px
+        line-height: 17px
+.boost
+    height: 600px
+    background: #E5E5E5
+    &__wrapper
+        height: 600px
+    &__right
+        position: relative
+    &__picture
+        margin-top: 120px
+        width: 632px
+        height: 360px
+    &__textbox
+        position: relative
+        left: -64px
+        top: 140px
+        width: 618px
+        height: 320px
+        box-shadow: 0px 9px 90px rgba(0, 0, 0, 0.25)
+        z-index: 1
+.textbox
+    background: #FFFFFF
+    border-radius: 2px
+    padding: 40px 60px 40px 40px
+    color: #111111
+    font-family: Rubik
+    &__header
+        font-weight: 700
+        font-size: 24px
+        line-height: 28px
+    &__ol
+        margin: 24px 0 0 0
+        padding-left: 34px
+        list-style: none
+        counter-reset: new-counter
+        position: relative
+        li
+            counter-increment: new-counter
+            font-weight: 400
+            font-size: 16px
+            line-height: 19px
+            margin-bottom: 22px
+        li::before
+            content: "0" counter(new-counter) "."
+            color: #5A17FF
+            font-weight: 500
+            font-size: 17px
+            line-height: 20px
+            position: absolute
+            left: 0
+        li:last-child
+            margin-bottom: 0
+    &__ul
+        margin: 20px 0 0 0 
+        li
+            font-size: 20px
+            line-height: 24px
+            font-weight: 400
+            margin-bottom: 20px
+    &_blue
+        position: relative
+        background: #4C1ED3
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25)
+        border-radius: 5px
+        color: #fff
+        width: 520px
+        height: 336px
+        .textbox__header
+            margin-top: 61px
+.plus
+    height: 698px
+    font: Rubik
+    background: #F1F2F4
+    padding-top: 0.01%
+    &__header
+        margin: 77px 0 4px 0
+        font-weight: 600
+        letter-spacing: 1.5px
+        font-size: 40px
+        line-height: 47px
+        color: #111111
+        text-align: center
+    &__textbox
+        margin-top: 40px
+    &__left
+        .textbox
+            padding: 0.01% 0 0 40px
+            &__ul
+                padding-left: 18px
+            &__picture
+                position: absolute
+                top: 59px
+                right: 0
+    &__right
+        padding-left: 35px
+        .textbox
+            padding: 0.01% 40px 0 172px
+            &__ul
+                padding-left: 26px
+            &__picture
+                position: absolute
+                top: 59px
+                left: 0
+        &::before
+            content: "+"
+            position: absolute
+            left: -17px
+            top: 166px
+            font-weight: 700
+            font-size: 51px
+            line-height: 57px
+            color: #5A17FF
+    &__free
+        margin-top: 57px
+        width: 100%
+        text-align: center
+        .free__main
+            font-size: 31px
+            letter-spacing: 1.7px
+            line-height: 38px
+        .free__sub
+            margin: 0
+            letter-spacing: 0.5px
+.active
+    height: 568px
+    background: linear-gradient(0deg, #5E19CE 0%, #4021D6 100%)
+    mix-blend-mode: darken
+    font-family: Rubik
+    padding-top: 0.01%
+    &__header
+        margin-top: 80px
+        font-weight: 700
+        font-size: 24px
+        line-height: 28px
+        text-align: center
+        text-transform: uppercase
+        color: #fff
+    &__form
+        margin: 40px auto 0
+.form
+    width: 673px
+    height: 312px
+    background: #FFFFFF
+    box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.25)
+    border-radius: 10px
+    text-align: center
+    &__message
+        display: inline-block
+        margin: 20px 0 0 0
+        font-weight: 500
+        font-size: 16px
+        line-height: 19px
+        color: #F80303
+.input
+    &__wrapper
+        width: 100%
+        margin: 16px 0 20px
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-between
+        align-content: space-between
+        height: 100px
+        padding: 0 23px 0 25px
+    &__name, &__country, &__email, &__phone
+        width: 300px
+        height: 38px
+        border: 1px solid #DADADA
+        border-radius: 10px
+        padding-left: 17px
+        font-size: 12px
+        line-height: 23px
+        font-weight: 400
+        outline: none
+        color: #111
+    ::placeholder
+        color: #111
+        opacity: 1
+    :-ms-input-placeholder
+        color: #111
+    ::-ms-input-placeholder
+        color: #111
+    &__country
+        padding: 0
+        border: 0
+    &__chbox-wrap
+        position: relative
+        float: left
+        margin: 0 23px 0 25px
+        width: 20px
+        height: 20px
+        border: 1px solid #ABABAB
+        border-radius: 5px
+        cursor: pointer
+        pointer-events: none
+    &__chbox
+        opacity: 0
+        width: 100%
+        height: 100%
+        cursor: pointer
+    &__checkmark:after
+        content: ""
+        position: absolute
+        display: none
+    &__chbox-wrap &__chbox:checked ~ &__checkmark:after
+        display: block
+    &__chbox-wrap &__checkmark:after
+        left: 7px
+        top: 3px
+        width: 5px
+        height: 10px
+        border: solid #111
+        border-width: 0 2px 2px 0
+        -webkit-transform: rotate(45deg)
+        -ms-transform: rotate(45deg)
+        transform: rotate(45deg)
+        pointer-events: none
+    &__label
+        display: block
+        padding-right: 20px
+        text-align: left
+        font-weight: 300
+        font-size: 10px
+        line-height: 12px
+        letter-spacing: 0.48px
+        color: #ABABAB
+        span:nth-child(2)
+            color: #000
+    &__submit
+        margin-top: 12px
+        width: 200px
+        height: 50px
+        background: #FF844F
+        border-radius: 10px
+        border: 0
+        font-weight: 700
+        font-size: 16px
+        line-height: 54px
+        text-transform: uppercase
+        color: #fff
+.country
+    position: relative
+    border: 1px solid #DADADA
+    // start input
+    &__button
+        display: flex
+        position: absolute
+        top: 0
+        right: 0
+        padding: 0 0 0 0
+        justify-content: center
+        align-items: center
+        border-radius: 0 10px 10px 0
+        height: 100%
+        width: 10%
+        outline: none
+        border: none
+        background-color: white
+        &:focus
+            outline: none
+    &__input
+        height: 100%
+        width: 100%
+        border: none
+        padding-left: 17px
+        border-radius: 10px
+    &__input:focus
+        outline: none
+    &__arrow 
+        border: solid black
+        border-width: 0 1px 1px 0
+        padding: 2px
+        transform: rotate(45deg)
+    &__dropdown 
+        position: absolute
+        width: 100%
+        top: 40px
+        box-sizing: border-box
+        border: 1px solid #DADADA
+        border-radius: 10px
+        max-height: 190px
+        overflow-y: auto
+        padding: 5px 0
+    &__option 
+        display: none
+    &__item 
+        display: block
+        text-align: left
+        margin: 0
+        padding: 5px 10px 5px 17px
+        background-color: #FFFFFF
+        color: #111
+    &__item:hover
+        background-color: #E5E5E5
+    .hidden 
+        display: none
+// end input
+.description
+    height: 195px
+    background: #FFF0E6
+    padding-top: 40px
+    &__article
+        font-family: Raleway
+        font-size: 16px
+        line-height: 19px
+        color: #111111
+.footer
+    height: 706px
+    background: #394046
+    font-family: Open Sans
+    color: #FFFFFF
+    padding-top: 64px
+    &__pay
+        height: 77px
+        padding-bottom: 12px
+        display: flex
+        justify-content: right
+        align-items: center
+        border-bottom: 1px solid #FFFFFF
+    &__pay-options
+        width: 390px
+    &__disclaimer
+        display: block
+        font-size: 16px
+        line-height: 25px
+        padding-top: 48px
+        p:nth-child(2)
+            margin-top: 25px
+    &__bottom
+        padding: 32px 0 64px 0
+        display: flex
+        justify-content: space-between
+        align-items: flex-end
+    &__logo
+        width: 94px
+        height: 30px
+    &__bottom-links
+        a
+            font-size: 14px
+            line-height: 19px
+            margin-left: 17px
+            color: #fff
+        a:hover
+            text-decoration: none
+            color: #E5E5E5
+.boxes
+    h3
+        font-size: 20px
+        line-height: 27px
+        margin-bottom: 8px
+    ul
+        list-style: none
+        margin: 0
+        padding: 0
+        font-size: 14px
+        line-height: 19px
+        li
+            margin-bottom: 4px
+            a
+                text-decoration: none
+                color: #fff
+            a:hover
+                color: #E5E5E5
+    &__about
+        padding-left: 9px
+    &__programs
+        margin-left: -17px
+    &__contacts
+        margin-left: -8px
+    &__trading
+        margin-left: 33px
+    &__socials
+        margin-left: -10px
+        display: flex
+        justify-content: right
+.socials
+    margin-top: -4px
+    &__youtube
+        width: 19px
+        height: 15px
+    &__facebook
+        width: 10px
+        height: 19px
+        margin-left: 25px
+    &__instagram
+        width: 18px
+        height: 17px
+        margin-left: 25px
+    &__twitter
+        width: 19px
+        height: 17px
+        margin-left: 20px
+    svg:hover
+        fill: #E5E5E5
+        cursor: pointer
+        
