@@ -92,26 +92,16 @@
                     Tradenet will reject any incorrectly filled applications</span>
                     <div class="form__input input">
                         <div class="input__wrapper">
-                            <input type="text" required placeholder="Name" class="input__name">
+                            <input type="text" required maxlength="28" placeholder="Name" class="input__name">
                             <div class="input__country country">
                                 <input type="text" id="select-label" class="country__input" required placeholder="Country">
                                 <button id="country" class="country__button">
                                     <div id="arrow" class="country__arrow"></div>
                                 </button>
-                                
-                                <div class="country__dropdown hidden" id="dropdown">
-                                    <input type="radio" id="select-internet" name="where" value="internet" class="country__option">
-                                    <label for="select-internet" class="country__item">Internet search</label>
-                            
-                                    <input type="radio" id="select-family" name="where" value="family" class="country__option">
-                                    <label for="select-family" class="country__item">Friends & family</label>
-                            
-                                    <input type="radio" id="select-existing" name="where" value="existing" class="country__option">
-                                    <label for="select-existing" class="country__item">Existing customer</label>
-                                </div>
+                                <div class="country__dropdown hidden" id="dropdown"></div>
                             </div>
-                            <input type="email" required placeholder="Email" class="input__email">
-                            <input type="tel" required placeholder="Phone" class="input__phone">
+                            <input type="email" pattern="[^@]+@[^@]+\.[^@]+" required placeholder="Email" class="input__email">
+                            <input type="tel" pattern="[+\-\(\)\s\d]+" maxlength="28" required placeholder="Phone" class="input__phone">
                         </div>
                         <div class="input__chbox-wrap">
                             <input type="checkbox" id="privacy" class="input__chbox">

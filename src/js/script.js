@@ -2,10 +2,27 @@ import codes from './phone.js'
 
 // country select
 
-const buttonCountry = document.querySelector('#country');
+    // fill countries
+
 const selectCountry = document.querySelector("#dropdown");
-const optionsCountry = document.querySelectorAll(".country__option");
+
+function fillCountries() {
+    codes.forEach(item => {
+        const newOption = document.createElement('div');
+        newOption.classList.add("country__item");
+        newOption.innerHTML = item.name;
+        selectCountry.appendChild(newOption);
+    })
+}
+
+fillCountries();
+
+    // apply dropdown functionality
+
+const buttonCountry = document.querySelector('#country');
+const optionsCountry = document.querySelectorAll(".country__item");
 const selectLabel = document.querySelector('#select-label');
+const phone = document.querySelector('.input__phone');
 
 buttonCountry.addEventListener("click", function (e) {
     e.preventDefault();
@@ -14,7 +31,15 @@ buttonCountry.addEventListener("click", function (e) {
 
 optionsCountry.forEach(function (option) {
     option.addEventListener("click", function (e) {
-        setSelectTitle(e);
+        const base = codes.find(item => item.name == e.target.innerText);
+        selectLabel.value = e.target.innerText;
+        phone.value = base.Iso;
+        toggleHidden();
+
+        const hiddenOptions = selectCountry.querySelectorAll('.hidden');
+        hiddenOptions.forEach(item => {
+            item.classList.remove('hidden');
+        })
     });
 });
 
@@ -22,53 +47,38 @@ function toggleHidden() {
     selectCountry.classList.toggle("hidden");
 }
 
-function setSelectTitle(e) {
-    const labelElement = document.querySelector(`label[for="${e.target.id}"]`).innerText;
-    selectLabel.value = labelElement;
-    toggleHidden();
-};
 
 // country search
 
+    // get country
 
+$.ajax({
+    url: "https://geolocation-db.com/jsonp",
+    jsonpCallback: "callback",
+    dataType: "jsonp",
+    success: pasteData,
+    error: () => {
+        throw new Error("Get country failed")
+    }
+});
 
-let countryCode = async () => {
-    
-await $.ajax({
-        url: "https://geolocation-db.com/jsonp",
-        jsonpCallback: "callback",
-        dataType: "jsonp",
-        success: function (location) {
-            countryCode = location.country_code;
-        }
-    });
-    return location.country_code
-};
-
-// const getData = async () => {
-//     const res = await fetch("https://geolocation-db.com/jsonp", {
-//         method: "POST",
-//         headers: {
-//             'Content-type': 'multipart/json'
-//         },
-//         body: data
-//     });
-
-//     return await res.json();
-// };
-
-async () => {
-    await console.log(countryCode())
+function pasteData(respond) {
+    const code = respond.country_code;
+    const base = codes.find(item => item.countryCode == code);
+    phone.value = base.Iso;
+    selectLabel.value = base.name;
 }
 
+    // country filtering
+
 selectLabel.oninput = () => {
-    let findVal = selectLabel.textContent,
+    let findVal = selectLabel.value,
         regexp = new RegExp(findVal, "gi");
-    console.log("input")
     optionsCountry.forEach(item => {
-        console.log(item.value, regexp, item.value.search(regexp))
-        if (item.value.search(regexp) >= 0) {
-            console.log("match")
+        if (item.innerText.search(regexp) >= 0) {
+            item.classList.remove("hidden")
+        } else {
+            item.classList.add("hidden")
         }
     })
 }
