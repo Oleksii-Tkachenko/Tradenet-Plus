@@ -47,6 +47,33 @@ function toggleHidden() {
     selectCountry.classList.toggle("hidden");
 }
 
+// page havigation
+
+window.location.href = "#main"
+
+function applyState() {
+    const path = window.location.href;
+    const hashPos = path.lastIndexOf("#");
+    let hashName = "";
+    if (hashPos >= 0) {
+        hashName = path.slice(hashPos + 1);
+    }
+    if (hashName == "main") {
+        $(".active__wrapper-form").show();
+        $(".active__wrapper-access").hide();
+        $(".active__wrapper-final").hide();
+    } else if (hashName == "questionaire") {
+        $(".active__wrapper-form").hide();
+        $(".active__wrapper-access").show();
+        $(".active__wrapper-final").hide();
+    } else if (hashName == "last") {
+        $(".active__wrapper-form").hide();
+        $(".active__wrapper-access").hide();
+        $(".active__wrapper-final").show();
+    }
+}
+
+window.onpopstate = applyState;
 
 // country search
 
@@ -83,5 +110,108 @@ selectLabel.oninput = () => {
     })
 }
 
+// State
 
+const formData = {
+    name: "",
+    mail: "",
+    phone: "",
+    country: ""
+}
+
+// Start Questionaire
+
+$("#form-submit").click((e) => {
+    e.preventDefault;
+    let valid = true;
+    $("#form input").each(function(i,el){
+        if (el.checkValidity() !== true) {
+            valid = false;
+        } 
+    })
+
+    // saving form data 
+
+    if (valid) {
+        formData.name = $(".input__name").val();
+        formData.mail = $(".input__email").val();
+        formData.phone = $(".input__phone").val();
+        formData.country = $(".country__input").val();
+    }
+
+    // !!! move above !!!
+
+    $(".active__wrapper-form").hide();
+    $(".active__wrapper-access").show("fast");
+    window.location.href = "#questionaire"
+})
+
+// Quiz start
+
+$(".question__link-button").click((e) => {
+    e.preventDefault();
+    $(".active__wrapper-access").hide();
+    $(".active__wrapper-questionaire").show();
+
+    // prevent back
+
+    window.history.pushState(null, "", window.location.href);
+    window.onpopstate = function () {
+        window.history.pushState(null, "", window.location.href);
+    };
+})
+
+    // next question
+
+const answers = {
+    1: null,
+    2: null,
+    3: null,
+    4: null
+};
+
+let question = 1;
+
+$(".questionaire__option").each((i, el) => {
+    $(el).click(() => {
+        answers[question] = i + 1;
+        question++;
+        if (question <= 4) {
+            $(".questionaire__option").each((ind, elem) => {
+                $(elem).children(`.picture:eq(${question - 2})`).hide();
+                $(elem).children(`.picture:eq(${question - 1})`).fadeIn();
+                $(elem).children(`.questionaire__answer:eq(${question - 2})`).hide();
+                $(elem).children(`.questionaire__answer:eq(${question - 1})`).fadeIn();
+                $(".progressbar__list").children(`li:eq(${question - 1})`).addClass("item_active");
+            })
+        } else {
+            $(".active__wrapper-questionaire").hide();
+            $(".active__wrapper-final").show();
+            window.location.href = "#last"
+            window.onpopstate = applyState;
+            postData();
+        }
+        if (question == 2) {
+            postData();
+        }
+    })
+})
+
+// post request with answers
+
+function postData() {
+    let data = formData;
+    let answer = "";
+    for (let i in answers) {
+        if (answers[i]) {
+            answer += `Question -${i}: ${answers[i]};`;
+        }
+    }
+    data.answers = answer;
+    $.ajax({
+        type: "POST",
+        url: "server.php",                  // change accordingly
+        data: JSON.stringify(data)
+    })
+}
 

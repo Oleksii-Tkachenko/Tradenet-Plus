@@ -87,7 +87,7 @@
         <div class="container">
             <div class="active__wrapper-form">
                 <h2 class="active__header">GET YOUR Tradenet<br>Simulator Now!</h2>
-                <form class="active__form form">
+                <form id="form" class="active__form form">
                     <span class="form__message">Make sure your details are entered accurately <br>
                     Tradenet will reject any incorrectly filled applications</span>
                     <div class="form__input input">
@@ -108,8 +108,8 @@
                             <span class="input__checkmark"></span>
                         </div>
                         <label for="privacy" class="input__label"><span>I consent to receive promotional materials from time to time. I, hereby declare that I have read, understood and
-                        accepted the </span><span>Company‘s Terms Conditions | Privacy policy and cookie policy</span></label>
-                        <input type="submit" class="input__link-button link-button link-button_form" value="GET NOW">
+                        accepted the </span><span><a href="#">Company‘s Terms Conditions</a> | <a href="#">Privacy policy and cookie policy</a></span></label>
+                        <input id="form-submit" type="button" class="input__link-button link-button link-button_form" value="GET NOW">
                     </div>
                 </form>
             </div>
@@ -271,21 +271,28 @@
                     <span class="final__note">These are the solutions that we would like to suggest to you according to your answers</span>
                     <div class="final__card-wrapper">
                         <a href="#" class="final__link">
-                        <div class="final__card card">
+                        <div class="final__card card card_freecourse">
                             <h3 class="card__header">Free Сourse</h3>
-                            <span class="card__subscr">Take our free course and start your day trading journey today!</span>
+                            <div class="card__subscr"><div>Take our free course</div> and start your day trading journey today!</div>
                         </div>
                         </a>
                         <a href="#" class="final__link">
-                            <div class="final__card card">
+                            <div class="final__card card card_trading">
                                 <h3 class="card__header">Trading challenge</h3>
-                                <span class="card__subscr">Take the 5-day challenge and win amazing prizes</span>
+                                <div class="card__subscr">Take the 5-day challenge and win amazing prizes</div>
+                                <img src="img/trading_comp.png" alt="trading" class="card_trading_picture">
                             </div>
                         </a>
                         <a href="#" class="final__link">
-                            <div class="final__card card">
+                            <div class="final__card card card_stocktalks">
                                 <h3 class="card__header">Tradenet Stock Talks</h3>
-                                <span class="card__subscr">Join our Facebook community of successful traders and learn from the best</span>
+                                <div class="card__subscr">Join our Facebook community of successful traders and learn from the best</div>
+                                <img class="card_stocktalks_bg" src="img/stock_bg.png">
+                                <div class="card_stocktalks_round"></div>
+                                <div class="card_stocktalks_round_big"></div>
+                                <div class="card_stocktalks_round_fb"><img src="img/icons/tradent_fb.png" alt="fb_icon"></div>
+                                <img src="img/tradent_card_1.png" alt="app_view" class="card_stocktalks_picture_app">
+                                <img src="img/tradent_card_2.png" alt="chat" class="card_stocktalks_picture_chat">
                             </div>
                         </a>
                     </div>
@@ -404,6 +411,7 @@
     </footer>
 
     <script src="js/jquery-3.5.1.min.js"></script>
+    <!-- <script src="js/jquery.validate.min.js"></script> -->
     <script defer type="module" src="js/script.js"></script>
 </body>
 </html>
