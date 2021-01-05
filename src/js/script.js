@@ -127,7 +127,10 @@ $("#form-submit").click((e) => {
     $("#form input").each(function(i,el){
         if (el.checkValidity() !== true) {
             valid = false;
-        } 
+            $(el).css("boxShadow", "0 0 3px red")
+        } else {
+            $(el).css("boxShadow", "none")
+        }
     })
 
     // saving form data 
@@ -137,13 +140,13 @@ $("#form-submit").click((e) => {
         formData.mail = $(".input__email").val();
         formData.phone = $(".input__phone").val();
         formData.country = $(".country__input").val();
+
+        // go to next page
+
+        $(".active__wrapper-form").hide();
+        $(".active__wrapper-access").show("fast");
+        window.location.href = "#questionaire"
     }
-
-    // !!! move above !!!
-
-    $(".active__wrapper-form").hide();
-    $(".active__wrapper-access").show("fast");
-    window.location.href = "#questionaire"
 })
 
 // Quiz start
@@ -182,6 +185,9 @@ $(".questionaire__option").each((i, el) => {
                 $(elem).children(`.picture:eq(${question - 1})`).fadeIn();
                 $(elem).children(`.questionaire__answer:eq(${question - 2})`).hide();
                 $(elem).children(`.questionaire__answer:eq(${question - 1})`).fadeIn();
+                $(".questionaire__pagination").text(`Question ${question} of 4`);
+                $(".questionaire").children(`h2:eq(${question - 2})`).hide();
+                $(".questionaire").children(`h2:eq(${question - 1})`).show();
                 $(".progressbar__list").children(`li:eq(${question - 1})`).addClass("item_active");
             })
         } else {
