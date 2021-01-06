@@ -130,7 +130,7 @@ selectLabel.oninput = () => {
     })
 }
 
-// State
+// form data save
 
 const formData = {
     name: "",
@@ -150,6 +150,24 @@ $("#form-submit").click((e) => {
             $(el).css("boxShadow", "0 0 3px red")
         } else {
             $(el).css("boxShadow", "none")
+        }
+
+        // checking checkbox
+
+        if (!$(".input__chbox").is(":checked")) {
+            valid = false;
+            $(".input__chbox").parent().css("boxShadow", "0 0 3px red");
+        } else {
+            $(".input__chbox").parent().css("boxShadow", "none");
+        }
+
+        // // checking phone
+
+        if ($(".input__phone").val().length < 10) {
+            valid = false;
+            $(".input__phone").css("boxShadow", "0 0 3px red");
+        } else {
+            $(".input__phone").css("boxShadow", "none");
         }
     })
 
