@@ -2171,6 +2171,10 @@
     padding-left: 13px;
   }
 
+  .input__country {
+    padding-left: 0;
+  }
+
   .input__chbox-wrap {
     width: 16px;
     height: 16px;
