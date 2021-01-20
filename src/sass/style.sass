@@ -1,4 +1,13 @@
 @import "fonts"
+
+$maxWidth: 1920
+@mixin adaptiv-font($pcSize, $mobSize)
+    $addSize: $pcSize - $mobSize
+    $addMobSize: $addSize + $addSize * 0.7
+    @media (max-width: 767px)
+        font-size: calc(#{$mobSize + px} + #{$addMobSize}*((100vw - 320px) / #{$maxWidth}))
+    @media (min-width: 767px)
+        font-size: calc(#{$mobSize + px} + #{$addSize}*(100vw / #{$maxWidth}))
 *
     margin: 0 imortant
     padding: 0 imortant
@@ -1454,4 +1463,25 @@
     svg:hover
         fill: #E5E5E5
         cursor: pointer
-        
+.main-disclaimer
+    position: fixed
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+    scroll-behavior: 
+    background: rgba(0,0,0,0.8)
+    z-index: 9999
+    p
+        position: relative
+        text-transform: uppercase
+        width: 52%
+        border-radius: 5px
+        background: #fff
+        top: 50%
+        left: 50%
+        padding: 40px
+        transform: translate(-50%,-50%)
+        @include adaptiv-font(25, 14)
+body
+    overflow: hidden

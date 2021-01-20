@@ -1,4 +1,5 @@
 import codes from './phone.js'
+import pattern from './pattern.js'
 
 // webp support
 
@@ -130,6 +131,37 @@ selectLabel.oninput = () => {
     })
 }
 
+// chaecking inputs
+
+    // email and phone
+
+$("input__name, .input__email, .input__phone").each((i, input) => {
+    input.addEventListener("focusout", () => {
+        checkInput(input);
+        input.oninput = () => {
+            checkInput(input);
+        }
+    })
+});
+
+
+
+function checkInput(input) {
+    const patt = pattern[input.type];
+
+    if (!patt.test(input.value) && input.value != "") {
+        input.setCustomValidity("Correct input according tamplate");
+        $(input).css("boxShadow", "0 0 3px red")
+    } else {
+        input.setCustomValidity("");
+        $(input).css("boxShadow", "none")
+    }
+}
+
+$(".input__chbox").change(() => {
+    $(".input__chbox").parent().css("boxShadow", "none");
+})
+
 // form data save
 
 const formData = {
@@ -160,15 +192,6 @@ $("#form-submit").click((e) => {
         } else {
             $(".input__chbox").parent().css("boxShadow", "none");
         }
-
-        // // checking phone
-
-        if ($(".input__phone").val().length < 10) {
-            valid = false;
-            $(".input__phone").css("boxShadow", "0 0 3px red");
-        } else {
-            $(".input__phone").css("boxShadow", "none");
-        }
     })
 
     // saving form data 
@@ -189,7 +212,7 @@ $("#form-submit").click((e) => {
 
 // Quiz start
 
-$(".question__link-button").click((e) => {
+$(".question__link-button").one("click", (e) => {
     e.preventDefault();
     $(".active__wrapper-access").hide();
     $(".active__wrapper-questionaire").show();
@@ -259,3 +282,9 @@ function postData() {
     })
 }
 
+// Disclaimer
+
+$(".main-disclaimer").click(function () {
+    $(this).css("display", "none");
+    $("body").css("overflow", "visible");
+});
